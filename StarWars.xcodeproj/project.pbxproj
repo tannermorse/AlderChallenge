@@ -15,6 +15,8 @@
 		F37A3FEE20C5F15200847608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37A3FEC20C5F15200847608 /* LaunchScreen.storyboard */; };
 		F37A3FF920C5F15200847608 /* StarWarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A3FF820C5F15200847608 /* StarWarsTests.swift */; };
 		F37A400420C5F15200847608 /* StarWarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A400320C5F15200847608 /* StarWarsUITests.swift */; };
+		F37A401320C7295A00847608 /* Individual+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A401120C7295A00847608 /* Individual+CoreDataClass.swift */; };
+		F37A401420C7295A00847608 /* Individual+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A401220C7295A00847608 /* Individual+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		F37A3FFF20C5F15200847608 /* StarWarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37A400320C5F15200847608 /* StarWarsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUITests.swift; sourceTree = "<group>"; };
 		F37A400520C5F15200847608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F37A401120C7295A00847608 /* Individual+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Individual+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F37A401220C7295A00847608 /* Individual+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Individual+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 		F37A3FD420C5F15000847608 = {
 			isa = PBXGroup;
 			children = (
+				F37A401120C7295A00847608 /* Individual+CoreDataClass.swift */,
+				F37A401220C7295A00847608 /* Individual+CoreDataProperties.swift */,
 				F37A3FDF20C5F15000847608 /* StarWars */,
 				F37A3FF720C5F15200847608 /* StarWarsTests */,
 				F37A400220C5F15200847608 /* StarWarsUITests */,
@@ -260,7 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F37A3FE320C5F15000847608 /* ViewController.swift in Sources */,
+				F37A401420C7295A00847608 /* Individual+CoreDataProperties.swift in Sources */,
 				F37A3FE120C5F15000847608 /* AppDelegate.swift in Sources */,
+				F37A401320C7295A00847608 /* Individual+CoreDataClass.swift in Sources */,
 				F37A3FE920C5F15000847608 /* StarWars.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
