@@ -21,27 +21,29 @@ class IndividualsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = self.aoIndividuals[0].firstName
-        Individual.parseArticle(tableView: IndividualsTableView) { () in
-                self.aoIndividuals = Individual.getIndividuals()
-                self.IndividualsTableView.reloadData()
-                self.title = self.aoIndividuals[1].firstName
-            print(self.aoIndividuals.count)
 
-        }
+         self.syncAlertHandler()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = "Balencers of the Force"
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.title = nil
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IndividualTableViewCell", for: indexPath) as! IndividualTableViewCell
+        cell.renderCell(individual: aoIndividuals[indexPath.row])
+
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        flowdelegate?.PushIndividualProfile(individual: aoIndividuals[indexPath.row])
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 80
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,5 +54,51 @@ class IndividualsViewController: UIViewController, UITableViewDelegate, UITableV
         return aoIndividuals.count
     }
     
+    func syncAlertHandler() {
+        let alert = self.setupAlert()
+        if UserDefaults.standard.integer(forKey: "hasData") == 0 {
+            self.present(alert, animated: true, completion: {
+                self.loadAndPresentData(alert: alert)
+            })
+        } else {
+            self.setupViewcontroller()
+        }
+    }
+    func loadAndPresentData(alert: UIAlertController) {
+        Individual.parseArticle(tableView: self.IndividualsTableView) { () in
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.setupViewcontroller()
+                alert.dismiss(animated: true, completion: nil)
+            })
+        }
+    }
+    func setupViewcontroller() {
+        self.aoIndividuals = Individual.getIndividuals()
+        self.IndividualsTableView.reloadData()
+        self.setupNavBar()
+        for item in aoIndividuals {
+            print(item.forceSensitive)
+        }
+    }
+    
+    func setupNavBar() {
+        let textAttributes = [NSAttributedStringKey.font: UIFont(name: "Georgia-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.navigationController?.navigationBar.barTintColor = UIColor.lightGray
+    }
+    
+    func setupAlert() -> UIAlertController {
+        let title = "Downloading"
+        let message = "\n\nThis may take a minute depending on your connection."
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let indicatorSpacingConstant = -5
+        let INDICATOR_SPACING: CGFloat = CGFloat(indicatorSpacingConstant)
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: INDICATOR_SPACING, width: alert.view.frame.width, height: alert.view.frame.height))
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        alert.view.addSubview(indicator)
+        indicator.startAnimating()
+        return alert
+    }
 }
 

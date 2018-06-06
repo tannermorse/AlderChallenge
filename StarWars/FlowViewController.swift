@@ -11,19 +11,11 @@ import CoreData
 
 class FlowViewController: UINavigationController, individualsViewControllerDelegate {
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    var aoIndividuals  = [Individual]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pushIndividualsViewController()
     }
-    override func viewWillAppear(_ animated: Bool) {
-
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     func pushIndividualsViewController() {
         let vc = mainStoryboard.instantiateViewController(withIdentifier: "IndividualsVC") as! IndividualsViewController
@@ -32,6 +24,9 @@ class FlowViewController: UINavigationController, individualsViewControllerDeleg
     }
 
     func PushIndividualProfile(individual: Individual) {
-        
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: "PersonVC") as! PersonViewController
+        vc.title = individual.affiliation?.replacingOccurrences(of: "_", with: " ")
+        vc.selectedPerson = individual
+        self.pushViewController(vc, animated: true)
     }
 }

@@ -14,8 +14,7 @@ import UIKit
 @objc(Individual)
 public class Individual: NSManagedObject {
     
-    
-    class func addIndividual(firstName: String, lastName: String, id: Int32, profilePicture: NSData, birthdate: String, forceSensitive: Bool, affiliation: String, cntx: NSManagedObjectContext) -> Individual {
+    class func addIndividual(firstName: String, lastName: String, id: Int32, profilePicture: NSData, birthdate: String, forceSensitive: Bool, affiliation: String, cntx: NSManagedObjectContext) {
         
         let newIndividual = NSEntityDescription.insertNewObject(forEntityName: "Individual", into: cntx) as! Individual
         newIndividual.firstName = firstName
@@ -25,14 +24,10 @@ public class Individual: NSManagedObject {
         newIndividual.affiliation = affiliation
         newIndividual.birthdate = birthdate
         newIndividual.forceSensitive = forceSensitive
-        
-        return newIndividual
-        
     }
     
-    class func parseArticle(tableView: UITableView, completion: (() -> Void)? = nil) {
-        
-        //let currentArticles = self.getArticles()
+    class func parseArticle(tableView: UITableView, completion: @escaping () -> Void) {
+        self.fetchAndDelete()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let cntx = appDelegate.persistentContainer.viewContext
         let url = URL(string: "https://starwarstest16.herokuapp.com/api/characters")!
@@ -53,12 +48,14 @@ public class Individual: NSManagedObject {
                                         let url = URL(string: imageURL)
                                         if url != nil {
                                             let imageData = NSData(contentsOf: url!)
-                                            self.addIndividual(firstName: individual["firstName"] as! String, lastName: individual["lastName"] as! String, id: individual["id"] as! Int32, profilePicture: imageData!, birthdate: individual["birthdate"] as! String, forceSensitive: (individual["forceSensitive"] != nil), affiliation: individual["affiliation"] as! String, cntx: cntx)
+                                            let force = (individual["forceSensitive"] as? Bool)!
+                                            self.addIndividual(firstName: individual["firstName"] as! String, lastName: individual["lastName"] as! String, id: individual["id"] as! Int32, profilePicture: imageData!, birthdate: individual["birthdate"] as! String, forceSensitive: force, affiliation: individual["affiliation"] as! String, cntx: cntx)
                                             appDelegate.saveContext()
-                                            
+                                            UserDefaults.standard.set(1, forKey: "hasData")
                                         }
                                 }
                             }
+                            completion()
                         }
                     } catch {
                         print("json serialization failed")
@@ -66,17 +63,13 @@ public class Individual: NSManagedObject {
                 }
             }
         }
-        task.resume()
-        completion?()
-        DispatchQueue.main.async(execute: { () -> Void in
-            
-            tableView.reloadData()
-        })
+        task.resume()        
     }
     
     class func getIndividuals() -> [Individual] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Individual")
-        let cntx = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let cntx = appDelegate.persistentContainer.viewContext
         var individuals = [Individual]()
         do {
             try individuals = cntx.fetch(request) as! [Individual]
@@ -85,13 +78,36 @@ public class Individual: NSManagedObject {
         }
         return individuals
     }
+    
+    class func fetchAndDelete() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Individual")
+        let cntx = appDelegate.persistentContainer.viewContext
+        var individuals = [Individual]()
+        
+        do {
+            try individuals = cntx.fetch(request) as! [Individual]
+            for item in individuals {
+                cntx.delete(item)
+            }
+        } catch {
+            print("Fetch request failed")
+        }
+        if cntx.hasChanges {
+            do {
+                try cntx.save()
+            } catch {
+                print("save failed")
+            }
+        }
+    }
 
 }
 
 extension Individual {
-//    @nonobjc public class func fetchRequest() -> NSFetchRequest<Individual> {
-//        return NSFetchRequest<Individual>(entityName: "Individual")
-//    }
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Individual> {
+        return NSFetchRequest<Individual>(entityName: "Individual")
+    }
     @NSManaged public var id: Int32
     @NSManaged public var firstName: String?
     @NSManaged public var lastName: String?
