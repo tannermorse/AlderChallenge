@@ -1,5 +1,5 @@
 //
-//  Individual+CoreDataClass.swift
+//  Individual+CoreDataProperties.swift
 //  StarWars
 //
 //  Created by Tanner Morse on 6/5/18.
@@ -10,7 +10,5 @@
 import Foundation
 import CoreData
 
-@objc(Individual)
-public class Individual: NSManagedObject {
 
-}
+
