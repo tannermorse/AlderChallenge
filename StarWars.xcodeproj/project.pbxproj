@@ -84,6 +84,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F30E659020C974FB00F515DF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F37A3FE220C5F15000847608 /* IndividualsViewController.swift */,
+				F37B8C5220C86FEC004E4A8C /* PersonViewController.swift */,
+				F38CAC6220C76D530091ECA9 /* FlowViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F30E659120C9754200F515DF /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				F37B8C5020C8660E004E4A8C /* IndividualTableViewCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		F30E659220C975C300F515DF /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				F37A3FE420C5F15000847608 /* Main.storyboard */,
+				F37A3FEC20C5F15200847608 /* LaunchScreen.storyboard */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
 		F37A3FD420C5F15000847608 = {
 			isa = PBXGroup;
 			children = (
@@ -108,15 +135,12 @@
 			isa = PBXGroup;
 			children = (
 				F37A3FE020C5F15000847608 /* AppDelegate.swift */,
-				F38CAC6220C76D530091ECA9 /* FlowViewController.swift */,
-				F37A3FE220C5F15000847608 /* IndividualsViewController.swift */,
-				F37A3FE420C5F15000847608 /* Main.storyboard */,
-				F37A3FEA20C5F15200847608 /* Assets.xcassets */,
-				F37A3FEC20C5F15200847608 /* LaunchScreen.storyboard */,
-				F37A3FEF20C5F15200847608 /* Info.plist */,
+				F30E659120C9754200F515DF /* CustomCells */,
+				F30E659020C974FB00F515DF /* ViewControllers */,
 				F38CAC6120C75AE60091ECA9 /* DataModels */,
-				F37B8C5020C8660E004E4A8C /* IndividualTableViewCell.swift */,
-				F37B8C5220C86FEC004E4A8C /* PersonViewController.swift */,
+				F30E659220C975C300F515DF /* xibs */,
+				F37A3FEA20C5F15200847608 /* Assets.xcassets */,
+				F37A3FEF20C5F15200847608 /* Info.plist */,
 			);
 			path = StarWars;
 			sourceTree = "<group>";
