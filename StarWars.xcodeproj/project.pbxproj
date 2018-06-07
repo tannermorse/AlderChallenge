@@ -16,7 +16,6 @@
 		F37A3FF920C5F15200847608 /* StarWarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A3FF820C5F15200847608 /* StarWarsTests.swift */; };
 		F37A400420C5F15200847608 /* StarWarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A400320C5F15200847608 /* StarWarsUITests.swift */; };
 		F37A401320C7295A00847608 /* Individual+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A401120C7295A00847608 /* Individual+CoreDataClass.swift */; };
-		F37A401420C7295A00847608 /* Individual+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A401220C7295A00847608 /* Individual+CoreDataProperties.swift */; };
 		F37B8C5120C8660E004E4A8C /* IndividualTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B8C5020C8660E004E4A8C /* IndividualTableViewCell.swift */; };
 		F37B8C5320C86FEC004E4A8C /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B8C5220C86FEC004E4A8C /* PersonViewController.swift */; };
 		F38CAC6320C76D530091ECA9 /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38CAC6220C76D530091ECA9 /* FlowViewController.swift */; };
@@ -55,7 +54,6 @@
 		F37A400320C5F15200847608 /* StarWarsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUITests.swift; sourceTree = "<group>"; };
 		F37A400520C5F15200847608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F37A401120C7295A00847608 /* Individual+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Individual+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F37A401220C7295A00847608 /* Individual+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Individual+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F37B8C5020C8660E004E4A8C /* IndividualTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTableViewCell.swift; sourceTree = "<group>"; };
 		F37B8C5220C86FEC004E4A8C /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		F38CAC6220C76D530091ECA9 /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 			children = (
 				F37A3FE720C5F15000847608 /* StarWars.xcdatamodeld */,
 				F37A401120C7295A00847608 /* Individual+CoreDataClass.swift */,
-				F37A401220C7295A00847608 /* Individual+CoreDataProperties.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -284,7 +281,6 @@
 			files = (
 				F37A3FE320C5F15000847608 /* IndividualsViewController.swift in Sources */,
 				F37B8C5120C8660E004E4A8C /* IndividualTableViewCell.swift in Sources */,
-				F37A401420C7295A00847608 /* Individual+CoreDataProperties.swift in Sources */,
 				F37B8C5320C86FEC004E4A8C /* PersonViewController.swift in Sources */,
 				F38CAC6320C76D530091ECA9 /* FlowViewController.swift in Sources */,
 				F37A3FE120C5F15000847608 /* AppDelegate.swift in Sources */,

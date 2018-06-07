@@ -21,12 +21,16 @@ class IndividualsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-         self.syncAlertHandler()
+        self.IndividualsTableView.isHidden = true
+        self.syncAlertHandler()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        self.title = "Balencers of the Force"
+        if UserDefaults.standard.integer(forKey: "hasData") != 0 {
+            self.title = "Balancers of the Force"
+        }
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.title = nil
     }
@@ -34,7 +38,6 @@ class IndividualsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IndividualTableViewCell", for: indexPath) as! IndividualTableViewCell
         cell.renderCell(individual: aoIndividuals[indexPath.row])
-
         return cell
     }
     
@@ -74,17 +77,16 @@ class IndividualsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     func setupViewcontroller() {
         self.aoIndividuals = Individual.getIndividuals()
-        self.IndividualsTableView.reloadData()
         self.setupNavBar()
-        for item in aoIndividuals {
-            print(item.forceSensitive)
-        }
+        self.IndividualsTableView.reloadData()
+        self.IndividualsTableView.isHidden = false
     }
     
     func setupNavBar() {
         let textAttributes = [NSAttributedStringKey.font: UIFont(name: "Georgia-Bold", size: 20)!]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGray
+        self.title = "Balancers of the Force"
     }
     
     func setupAlert() -> UIAlertController {

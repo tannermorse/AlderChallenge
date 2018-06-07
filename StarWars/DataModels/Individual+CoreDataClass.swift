@@ -38,10 +38,8 @@ public class Individual: NSManagedObject {
                 print(error!)
             } else {
                 if let urlContent = data {
-                    
                     do {
                         if let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: .mutableContainers) as? [String: Any] {
-                            print(jsonResult)
                             if let aoIndividuals = jsonResult["individuals"] as? [[String:Any]] {
                                 for individual in aoIndividuals {
                                         let imageURL = individual["profilePicture"] as! String

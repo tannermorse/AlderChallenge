@@ -21,12 +21,12 @@ class PersonViewController: UIViewController {
     
     var selectedPerson = Individual()
     var themeColor = UIColor()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTheme(themeColor: self.setThemecolor())
-        self.populateData()
+        self.configureTheme(themeColor: self.setThemecolor())
         self.setupButton()
-       
+        self.populateData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -34,7 +34,9 @@ class PersonViewController: UIViewController {
     }
 
     func populateData() {
-        self.nameLabel.text = "\(selectedPerson.firstName!) \(selectedPerson.lastName!)"
+        let firstName = selectedPerson.firstName!
+        let lastName = selectedPerson.lastName!
+        self.nameLabel.text = "\(firstName) \(lastName)"
         let birthday = self.formatDate(roughDate: selectedPerson.birthdate!)
         self.birthdayLabel.text = "It's \(birthday)!"
         self.quoteLabel.text = self.accessTheForce()
@@ -43,7 +45,7 @@ class PersonViewController: UIViewController {
         self.profileImageView.clipsToBounds = true
     }
     
-    func setTheme(themeColor: UIColor) {
+    func configureTheme(themeColor: UIColor) {
         self.navigationController?.navigationBar.barTintColor = themeColor
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.profileImageView.layer.borderColor = themeColor.cgColor
